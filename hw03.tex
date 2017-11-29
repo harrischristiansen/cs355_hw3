@@ -194,8 +194,8 @@
   \item Since CPU speed increased by 16x, we want the following property to hold true: $\frac{\beta 2^{n_1/10}}{\beta 2^{n_0/10}} = 16$
   
   	This means $n_1 = 40 + n_0$
-  \item Because the protocol using $n_1$ will be using 16 times the number of CPU instructions, at a speed 16 times faster than today's computers, the run-time will be the same.
-  \item Because the protocol using $n_1$ will be using 16 times the number of CPU instructions, the run-time would be 16 times longer on today's computers.
+  \item Because the protocol using $n_1$ will be using 16 times the number of CPU instructions, at a speed 16 times faster than today's computers, the run-time will be the same. In Big-O, the run-time will be equal.
+  \item Because the protocol using $n_1$ will be using 16 times the number of CPU instructions, the run-time would be 16 times longer on today's computers. In Big-O, the run-time will be equal.
   \end{enumerate}
     
 
@@ -230,8 +230,14 @@
 
   {\bfseries Solution.} 
   \begin{enumerate}
-  \item Because the inputs are not equal, we know $b \neq b'$ and/or $x \neq x'$. If $x \neq x'$, then we know $g^x$ will be a unique value in $h_y (b,x) = y^b g^x$. Thus, if $x \neq x'$, then $y^b \neq y^{b'}$ and $b \neq b'$ since $h_y(b,x) = h_y(b',x')$. Thus, no matter if x is equal to x', $b \neq b'$.
-  \item Sol 2 
+  \item Because the inputs are not equal, we know $b \neq b'$ and/or $x \neq x'$. If $x \neq x'$, then we know $g^x$ will be a unique value in $h_y (b,x) = y^b g^x$. Thus, if $x \neq x'$, then $y^b \neq y^{b'}$ and $b \neq b'$ since $h_y(b,x) = h_y(b',x')$. Thus, no matter if $x$ is equal to $x'$, $b \neq b'$.
+  \item Given $h_y(b,x)=h_y(b',x')$
+ 	
+ 	If $(b=0, b'=1)$: $y = g^x\inv(g^{x'}) = g^(x-x') = g^((b-b')(x'-x))$
+ 	
+ 	If $(b=1, b'=0)$: $y = g^{x'}\inv(g^x) = g^(x'-x) = g^(-(x-x')) = g^((b-b')(x'-x))$
+ 	
+ 	Thus $t = (b - b')(x' - x)$
   \end{enumerate}
 
  
