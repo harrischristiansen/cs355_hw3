@@ -1,0 +1,207 @@
+\documentclass[11pt]{article}
+\input{headers03}
+
+\usepackage{fancyhdr}   
+\pagestyle{fancy}      
+\lhead{}               
+\rhead{Name: Harris Christiansen (christih@purdue.edu)} %%% <-- YOUR NAME HERE
+
+\usepackage[strict]{changepage}  
+\newcommand{\nextoddpage}{\checkoddpage\ifoddpage{\ \newpage\ \newpage}\else{\ \newpage}\fi}  
+
+
+\begin{document}
+
+\title{Homework 3}
+
+\date{}
+
+\maketitle 
+
+\thispagestyle{fancy}  
+\pagestyle{fancy}      
+
+
+
+
+\begin{enumerate}
+
+%%% Problem 1 
+\item {\bfseries Analyzing a new MAC.} 
+  Suppose $\{F_1,\dotsc,F_\alpha\}$ is family of pseudorandom functions from $\zo^n$ to $\zo^{n/100}$. 
+  
+  Consider the following MAC Scheme for message $m \in \zo^{tn}$, for some constant natural number $t\geq 2$. 
+  \begin{boxedalgo}
+  \begin{enumerate}
+  \item $\gen()$: Return $\sk\getsr\{1,2,\dotsc,\alpha\}$ 
+  \item $\mac_\sk(m)$: Interpret the message $m=(m_1,m_2,\dotsc,m_t)$, where each $m_i\in\zo^n$ and $1\leq i\leq t$. 
+    Define $\tau_i = F_\sk(m_i)$, for each $1\leq i\leq t$. 
+    Return $\tau = (\tau_1,\tau_2,\dotsc,\tau_t)$. 
+  \item $\ver_\sk(m,\tau)$: Interpret $m=(m_1,\dotsc,m_t)$ and $\tau=(\tau_1,\dotsc,\tau_t)$, where each $m_i\in\zo^n$ and $\tau_i\in\zo^{n/100}$. 
+    Return \pred{true} if and only if $F_\sk(m_i)=\tau_i$, for all $1\leq i\leq t$. 
+  \end{enumerate}
+  \end{boxedalgo} 
+  
+  \begin{enumerate}
+  \item Prove that the above MAC scheme is not secure for $m\in\zo^{tn}$. 
+  \item Prove that the above MAC scheme preserves message integrity for $m\in\zo^{tn}$. 
+  \end{enumerate} 
+
+
+  
+\nextoddpage 
+%%% Problem 2 
+\item {\bfseries Designing a New MAC Scheme.}
+  We shall work over the field $(\bbZ_p,+,\times)$, where $p$ is a prime number. 
+  Consider the MAC scheme defined by the $(\gen,\mac,ver)$ algorithms below for message $\bbZ_p^\ell$, where $\ell\geq 1$ is a constant integer. 
+  
+  \begin{boxedalgo}
+  $\gen():$
+  \begin{enumerate}
+  \item Sample $k_1 \getsr \bbZ_p$ and $k_2 \getsr\bbZ_p$ 
+  \item Return $\sk = (k_1,k_2)$
+  \end{enumerate}
+  
+  $\mac_{\sk=(k_1,k_2)}(m)$: 
+  \begin{enumerate}
+  \item Interpret $m = (m_1,m_2,\dotsc,m_\ell)$, where each $m_i\in\bbZ_p$ 
+  \item Let $\tau = k_1 + m_1k_2 + m_2k_2^2 + \dotsi + m_\ell k_2^\ell$ 
+  \item Return $\tau$ as the tag for the message $m$ 
+  \end{enumerate} 
+  
+  $\ver_{\sk=(k_1,k_2)}(m)$:
+  \begin{enumerate}
+  \item Interpret $m=(m_1,m_2,\dotsc,m_\ell)$, where each $m_i\in\bbZ_p$
+  \item Return whether $\tau$ is identical to $k_1+m_1k_2 + m_2k_2^2 + \dotsi + m_\ell k^\ell$ 
+  \end{enumerate}
+  \end{boxedalgo}
+  
+  
+  \begin{enumerate}
+  \item Given a message $m=(m_1,m_2,\dotsc,m_\ell)$ and its tag $\tau$ what is the maximum probability that a different message $m' =(m'_1,m'_2,\dotsc,m'_\ell)$ that has the same tag $\tau$? 
+  \item Given a message $m=(m_1,m_2,\dotsc,m_\ell)$ and its tag $\tau$ what is the maximum probability that a different message $m' =(m'_1,m'_2,\dotsc,m'_\ell)$ and $\tau'$ as its valid tag? 
+  \end{enumerate} 
+  
+  ({\footnotesize {\em Remark}: You will need to use Schwartz-Zippel Lemma to compute the probability.}) 
+   
+  
+
+
+\nextoddpage 
+%%% Problem 3 
+\item {\bfseries New Pseudorandom Function Family.} 
+  In the lectures, we saw the following GGM construction for pseudorandom functions. 
+  Given a length-doubling PRG $G\colon\zo^B\to\zo^{2B}$, the GGM construction produces a family of pseudorandom functions $\{F_1,\dotsc,F_\alpha\}$ from the domain $\zo^n$ to the range $\zo^{B}$. 
+  
+  In this problem, we shall generalize the GGM PRF construction in two ways. 
+  \begin{enumerate}
+  \item Given a length-doubling PRG $G\colon\zo^B\to\zo^{2B}$, construct a family of pseudorandom function from the domain $\zo^n$ to the range $\zo^{100B}$. 
+  \item Why is the GGM construction not a pseudorandom function family from the domain $\zo^*$ to the range $\zo^B$? 
+  \item Consider the following function family $\{H_1,\dotsc,H_\alpha\}$ from the domain $\zo^*$ to the range $\zo^B$. 
+    We define $H_k(x) = F_k(x , [\abs x]_2)$, for $k\in\{1,2,\dotsc,\alpha\}$. 
+    Show that $\{H_1,\dotsc,H_\alpha\}$ is not a secure PRF from $\zo^*$ to the range $\zo^B$. 
+    
+    ({\footnotesize {\em Recall}: The expression $[\abs x]_2$ represents the length of $x$ in $n$-bit binary expression.}) 
+  \end{enumerate} 
+  
+  
+\nextoddpage 
+%%% Problem 4 
+\item {\bfseries Variant of ElGamal Encryption.} 
+  Let $(G,\circ)$ is a group where the DDH assumption holds and $g$ is a generator for this group. 
+  
+  Recall that in the ElGamal Encryption scheme encrypts a message $m\in G$ as follows.
+  \begin{boxedalgo}
+  $\enc_\pk(m)$:
+  \begin{enumerate}
+  \item Sample $a\getsr\{0,1,\dots,\abs G-1\}$ 
+  \item Compute $A = g^a$ 
+  \item Output the cipher-test $(A, m\circ \pk^a)$. 
+  \end{enumerate} 
+  \end{boxedalgo} 
+  
+  Consider the following alternate encryption scheme for $m\in\{0,1,\dotsc,\abs G-1\}$.
+  \begin{boxedalgo}
+  $\enc_\pk(m)$:
+  \begin{enumerate}
+  \item Sample $a\getsr\{0,1,\dots,\abs G-1\}$ 
+  \item Compute $A = g^a$ 
+  \item Output the cipher-test $(A, g^m\circ \pk^a)$. 
+  \end{enumerate} 
+  \end{boxedalgo} 
+  
+  Why can't this encryption scheme be used? 
+  
+  
+  
+   
+
+\nextoddpage 
+%%% Problem 5 
+\item {\bfseries Understanding Asymptotics.} 
+  Suppose we have a cryptographic protocol $P_n$ that is implemented using $\alpha n^2$ CPU instructions, where $\alpha$ is some constant.  
+  The protocol is expected to be broken using $\beta 2^{n/10}$ CPU instructions. 
+  
+  Suppose, today, everyone in the world uses the primitive $P_n$ using $n=n_0$, a constant value such that even if the entire computing resources of the world were put together for 8 years we cannot compute $\beta 2^{n_0/10}$ CPU instructions. 
+  
+  Assume Moore's law that the every two years, the amount of CPU instructions we can run per second doubles. 
+  
+  \begin{enumerate}
+  \item Assuming Moore's law, how much faster will be the CPUs 8 years into the future as compared to the CPUs now? 
+  \item At the end of 8 years, what choice of $n_1$ will ensure that setting $n=n_1$ will ensure that the protocol $P_n$ for $n=n_1$ cannot be broken for another 8 years? 
+  \item What will be the run-time of the protocol $P_n$ using $n=n_1$ on the new computers as compared to the run-time of the protocol $P_n$ using $n=n_0$ on today's computers? 
+  \item What will be the run-time of the protocol $P_n$ using $n=n_1$ on today's computers as compared to the run-time of the protocol $P_n$ using $n=n_0$ on today's computers? 
+  \end{enumerate}
+  
+  ({\footnotesize {\em Remark}: This problem explains why we demand that our cryptographic algorithms run in polynomial time and it is exponentially difficult for the adversaries to break the cryptographic protocols.})
+    
+    
+    
+
+
+
+
+
+
+\nextoddpage 
+%%% Problem 6
+\item {\bfseries CRHF from Discrete Log Assumption.} 
+  We shall work over the group $(\bbZ_p^*,\times)$, where $p$ is a prime number. 
+  Let $g$ be a generator of this group. 
+  
+  Let us define the hash function $h_y (b,x) = y^b g^x$, where $y\in\bbZ_p^*$, $b\in\zo$, and $x\in\{0,1,\dotsc,p-1\}$. 
+  Note that the domain is of size $2(p-1)$ and the range is of size $(p-1)$. 
+  So, this hash function family compresses its input. 
+  
+  Consider the hash function family $\cH = \{h_1,h_2,\dotsc,h_{p-1}\}$. 
+  
+  Suppose, we sample $y\getsr\bbZ_p^*$.
+  Once $h_y$ was announced to the world, a hacker releases two \underline{distinct} inputs $(b,x)$ and $(b',x')$ such that $h_y(b,x)=h_y(b',x')$. 
+  
+  \begin{enumerate}
+  \item Prove that $b=b'$ is not possible. 
+  \item If $b\neq b'$, then calculate $t\in\{0,1,\dotsc,p-1\}$ such that $g^t=y$. 
+  \end{enumerate}
+  
+  ({\footnotesize{\em Remark}: This is a secure CRHF construction based on the Discrete-Log Hardness Assumption. Discrete-Log Hardness Assumption states that given $y\getsr\bbZ_p^*$ it is computationally hard to find $t$ such that $g^t=y$. Based on this computational hardness assumption the CRHF construction presented above is secure. 
+  
+  Why? Suppose some hacker can indeed break the CRHF, \ie, find two distinct pre-images that collide. Then following your algorithm, we can find $t$ such that $g^t=y$, which was assumed to be a computationally hard task! Hence, contradiction.}) 
+
+
+
+ 
+ 
+
+
+
+\end{enumerate}
+
+
+
+
+
+
+
+
+
+\end{document}
