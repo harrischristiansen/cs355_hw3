@@ -46,6 +46,16 @@
   \item Prove that the above MAC scheme is not secure for $m\in\zo^{tn}$. 
   \item Prove that the above MAC scheme preserves message integrity for $m\in\zo^{tn}$. 
   \end{enumerate} 
+  
+  {\bfseries Solution.} 
+  \begin{enumerate}
+  \item For this MAC scheme to be secure, it should not be possible to determine the MAC for new messages that have not before been sent. However, since the pseudorandom functions map to a range 1/100 the size of the domain, it is therefor possible to determine a new message, $m_2$ that has the same MAC as a given message $m_1$, by swapping blocks that have equivalent MAC blocks.
+  
+  		The MAC scheme is not secure because $P[Sign_{sk}(m') = \tau' | Sign_{sk}(m) = \tau] \neq \frac{1}{|T|}$
+  \item Message integrity is still preserved because of the low probability of mutating the message in a malicious and non-destructive way.
+  
+  		$P[Sign_{sk}(m') = \tau' | Sign_{sk}(m) = \tau] \leq \frac{1}{|T|}$
+  \end{enumerate} 
 
 
   
@@ -83,6 +93,18 @@
   \end{enumerate} 
   
   ({\footnotesize {\em Remark}: You will need to use Schwartz-Zippel Lemma to compute the probability.}) 
+  
+  {\bfseries Solution.} 
+  \begin{enumerate}
+  \item The maximum probability that a different message m' has the same tag $\tau$ as message m is $P[\tau - \tau' = 0]$.
+  
+  	By Schwartz-Zippel Lemma, $P[\tau - \tau' = 0] \leq \frac{deg(\tau - \tau')}{|Z_p|}$
+  	
+  	$\frac{deg(\tau - \tau')}{|Z_p|} = \frac{deg((k_1 + m_1k_2 + m_2k_2^2 + \dotsi + m_\ell k_2^\ell) - (k_1 + m'_1k_2 + m'_2k_2^2 + \dotsi + m'_\ell k_2^\ell))}{|Z_p|}$
+  	
+  	$ = \frac{deg((m_1-m'_1)k_2 + (m_2-m'_2)k_2^2 + \dotsi + (m_\ell-m'_\ell) k_2^\ell)}{|Z_p|} = \frac{l}{p}$
+  \item The probability that a different message m' has a different tag $\tau'$ than message m is the same, $\frac{l}{p}$
+  \end{enumerate} 
    
   
 
@@ -102,6 +124,12 @@
     Show that $\{H_1,\dotsc,H_\alpha\}$ is not a secure PRF from $\zo^*$ to the range $\zo^B$. 
     
     ({\footnotesize {\em Recall}: The expression $[\abs x]_2$ represents the length of $x$ in $n$-bit binary expression.}) 
+  \end{enumerate}
+  
+  {\bfseries Solution.} 
+  \begin{enumerate}
+  \item Sol 1
+  \item Sol 2 
   \end{enumerate} 
   
   
@@ -116,7 +144,7 @@
   \begin{enumerate}
   \item Sample $a\getsr\{0,1,\dots,\abs G-1\}$ 
   \item Compute $A = g^a$ 
-  \item Output the cipher-test $(A, m\circ \pk^a)$. 
+  \item Output the cipher-text $(A, m\circ \pk^a)$. 
   \end{enumerate} 
   \end{boxedalgo} 
   
@@ -126,11 +154,17 @@
   \begin{enumerate}
   \item Sample $a\getsr\{0,1,\dots,\abs G-1\}$ 
   \item Compute $A = g^a$ 
-  \item Output the cipher-test $(A, g^m\circ \pk^a)$. 
+  \item Output the cipher-text $(A, g^m\circ \pk^a)$. 
   \end{enumerate} 
   \end{boxedalgo} 
   
   Why can't this encryption scheme be used? 
+  
+  {\bfseries Solution.} 
+  \begin{enumerate}
+  \item Sol 1
+  \item Sol 2 
+  \end{enumerate}
   
   
   
@@ -155,7 +189,11 @@
   
   ({\footnotesize {\em Remark}: This problem explains why we demand that our cryptographic algorithms run in polynomial time and it is exponentially difficult for the adversaries to break the cryptographic protocols.})
     
-    
+  {\bfseries Solution.} 
+  \begin{enumerate}
+  \item Sol 1
+  \item Sol 2 
+  \end{enumerate}
     
 
 
@@ -187,7 +225,11 @@
   
   Why? Suppose some hacker can indeed break the CRHF, \ie, find two distinct pre-images that collide. Then following your algorithm, we can find $t$ such that $g^t=y$, which was assumed to be a computationally hard task! Hence, contradiction.}) 
 
-
+  {\bfseries Solution.} 
+  \begin{enumerate}
+  \item Sol 1
+  \item Sol 2 
+  \end{enumerate}
 
  
  
