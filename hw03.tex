@@ -162,8 +162,7 @@
   
   {\bfseries Solution.} 
   \begin{enumerate}
-  \item Sol 1
-  \item Sol 2 
+  \item Because decrypting the cipher-text (multiplying by the inverse of the secret key) would give $g^m$, and not m. Since $m$ cannot be easily determined from $g^m$, this would make decrypting the cipher-text computationally expensive.
   \end{enumerate}
   
   
@@ -191,8 +190,12 @@
     
   {\bfseries Solution.} 
   \begin{enumerate}
-  \item Sol 1
-  \item Sol 2 
+  \item By Moore's law, in 8 years CPU speed will increase by $2^(8/2) = 16$
+  \item Since CPU speed increased by 16x, we want the following property to hold true: $\frac{\beta 2^{n_1/10}}{\beta 2^{n_0/10}} = 16$
+  
+  	This means $n_1 = 40 + n_0$
+  \item Because the protocol using $n_1$ will be using 16 times the number of CPU instructions, at a speed 16 times faster than today's computers, the run-time will be the same.
+  \item Because the protocol using $n_1$ will be using 16 times the number of CPU instructions, the run-time would be 16 times longer on today's computers.
   \end{enumerate}
     
 
@@ -227,7 +230,7 @@
 
   {\bfseries Solution.} 
   \begin{enumerate}
-  \item Sol 1
+  \item Because the inputs are not equal, we know $b \neq b'$ and/or $x \neq x'$. If $x \neq x'$, then we know $g^x$ will be a unique value in $h_y (b,x) = y^b g^x$. Thus, if $x \neq x'$, then $y^b \neq y^{b'}$ and $b \neq b'$ since $h_y(b,x) = h_y(b',x')$. Thus, no matter if x is equal to x', $b \neq b'$.
   \item Sol 2 
   \end{enumerate}
 
